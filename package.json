@@ -25,7 +25,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "name": "react-tabbed-components",
+  "name": "@gavinsykes/react-tabbed-components",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/gavinsykes"
   },
