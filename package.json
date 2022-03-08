@@ -1,0 +1,36 @@
+{
+  "author": {
+    "name": "Gavin Sykes",
+    "email": "gavin@gavinsykes.uk",
+    "url": "https://gavinsykes.uk"
+  },
+  "description": "A React component to allow tabbing of other components as if they are windows.",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@types/react": "^17.0.39",
+    "react": "^17.0.2",
+    "rollup": "^2.70.0",
+    "rollup-plugin-dts": "^4.2.0",
+    "typescript": "^4.6.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "tabs"
+  ],
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "name": "react-tabbed-components",
+  "scripts": {
+    "build": "npm run rollup",
+    "rollup": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "dist/index.d.ts",
+  "version": "0.0.1"
+}
