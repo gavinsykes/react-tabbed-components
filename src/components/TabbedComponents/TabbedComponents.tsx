@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactElement, ReactNode, useEffect, useState } from 'react';
+import React, { ElementType, FunctionComponent, ReactChild, ReactElement, ReactNode, useEffect, useState } from 'react';
 import TabbedComponentsTab from '../TabbedComponentsTab/';
 
 export interface TabbedComponentsProps {
@@ -7,7 +7,7 @@ export interface TabbedComponentsProps {
   tabNames: Array<string>;
 }
 
-function TabbedComponents(props: TabbedComponentsProps): ReactElement {
+function TabbedComponents(props: TabbedComponentsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
