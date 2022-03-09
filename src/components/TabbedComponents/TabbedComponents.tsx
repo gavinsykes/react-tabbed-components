@@ -2,9 +2,9 @@ import React, { ReactElement, useState } from 'react';
 import TabbedComponentsTab from '../TabbedComponentsTab/';
 
 export interface TabbedComponentsProps {
+  children: Array<ReactElement>;
   customClassName?: string;
   tabNames: Array<string>;
-  tabs: Array<ReactElement>;
 }
 
 function TabbedComponents(props: TabbedComponentsProps): ReactElement {
@@ -17,7 +17,7 @@ function TabbedComponents(props: TabbedComponentsProps): ReactElement {
         <TabbedComponentsTab customClassName={customClassName} key={index} activeTab={index === activeTab} setActiveTab={setActiveTab} index={index} tabName={tabName}/>))}
       </div>
       <div className={`${customClassName}__component`}>
-        {props.tabs[activeTab]}
+        {props.children[activeTab]}
       </div>
     </div>
   )
