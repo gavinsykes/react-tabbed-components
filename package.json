@@ -32,7 +32,7 @@
   "scripts": {
     "build": "npm run rollup",
     "postversion": "git push origin main && git push origin main --tags && npm publish",
-    "preversion": "npm run build && git commit -m \"Bumping version\"",
+    "preversion": "npm run build",
     "rollup": "rollup -c",
     "setup": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
