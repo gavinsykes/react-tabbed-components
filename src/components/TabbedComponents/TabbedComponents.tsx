@@ -1,11 +1,10 @@
-import React, { Children, ReactElement, useEffect, useState } from 'react';
+import React, { Children, HTMLAttributes, ReactElement, useEffect, useState } from 'react';
 import TabbedComponentsTab from '../TabbedComponentsTab/';
 
-export interface TabbedComponentsProps {
+export interface TabbedComponentsProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement | Array<ReactElement>;
   customClassName?: string;
   tabNames: Array<string>;
-  [ propName: string ]: any;
 }
 
 function TabbedComponents(props: TabbedComponentsProps): ReactElement {
