@@ -7,7 +7,7 @@ export interface TabbedComponentsProps {
   tabNames: Array<string>;
 }
 
-function TabbedComponents(props: TabbedComponentsProps) {
+function TabbedComponents(props: TabbedComponentsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState(0);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
