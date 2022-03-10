@@ -24,13 +24,13 @@ function TabbedComponents(props: TabbedComponentsProps): ReactElement {
     <div className={customClassName}>
       {error ? <p>{errorMessage}</p> : <><div className={`${customClassName}__tabs`}>
         {props.tabNames.map((tabName, index) => (
-        <TabbedComponentsTab customClassName={customClassName} key={index} activeTab={index === activeTab} setActiveTab={setActiveTab} index={index} tabName={tabName}/>))}
+          <TabbedComponentsTab customClassName={customClassName} key={index} activeTab={index === activeTab} setActiveTab={setActiveTab} index={index} tabName={tabName}/>))}
       </div>
       <div className={`${customClassName}__component`}>
         {Children.toArray(props.children)[activeTab]}
       </div></>}
     </div>
-  )
+  );
 }
 
 export default TabbedComponents;

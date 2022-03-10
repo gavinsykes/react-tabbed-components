@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction } from "react";
+import React, { Dispatch, ReactElement, SetStateAction } from 'react';
 
 export interface TabbedComponentsTabProps {
   activeTab: boolean;
@@ -9,7 +9,7 @@ export interface TabbedComponentsTabProps {
 }
 
 function TabbedComponentsTab(props: TabbedComponentsTabProps): ReactElement {
-  return <button className={`${props.customClassName}__tab${props.activeTab ? ' active' : ''}`} onClick={() => props.setActiveTab(props.index)}>{props.tabName}</button>
+  return <button className={`${props.customClassName}__tab${props.activeTab ? ' active' : ''}`} onClick={() => props.setActiveTab(props.index)}>{props.tabName}</button>;
 }
 
 export default TabbedComponentsTab;
