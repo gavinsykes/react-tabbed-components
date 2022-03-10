@@ -1,20 +1,20 @@
-import React, { ElementType, FunctionComponent, ReactChild, ReactElement, ReactNode, useEffect, useState } from 'react';
+import React, { Children, ReactElement, useEffect, useState } from 'react';
 import TabbedComponentsTab from '../TabbedComponentsTab/';
 
 export interface TabbedComponentsProps {
-  children: Array<ReactElement>;
+  children: ReactElement | Array<ReactElement>;
   customClassName?: string;
   tabNames: Array<string>;
 }
 
-function TabbedComponents(props: TabbedComponentsProps): JSX.Element {
+function TabbedComponents(props: TabbedComponentsProps): ReactElement {
   const [activeTab, setActiveTab] = useState(0);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { customClassName = 'TabbedComponents'} = props;
 
   useEffect(() => {
-    if (props.tabNames.length !== props.children.length) {
+    if (props.tabNames.length !== Children.toArray(props.children).length) {
       setError(true);
       setErrorMessage('The length of the tabNames array needs to match the number of children.');
     }
@@ -27,7 +27,7 @@ function TabbedComponents(props: TabbedComponentsProps): JSX.Element {
         <TabbedComponentsTab customClassName={customClassName} key={index} activeTab={index === activeTab} setActiveTab={setActiveTab} index={index} tabName={tabName}/>))}
       </div>
       <div className={`${customClassName}__component`}>
-        {props.children[activeTab]}
+        {Children.toArray(props.children)[activeTab]}
       </div></>}
     </div>
   )
