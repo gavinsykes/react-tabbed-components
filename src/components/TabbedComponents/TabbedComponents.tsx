@@ -5,6 +5,7 @@ export interface TabbedComponentsProps {
   children: ReactElement | Array<ReactElement>;
   customClassName?: string;
   tabNames: Array<string>;
+  [ propName: string ]: any;
 }
 
 function TabbedComponents(props: TabbedComponentsProps): ReactElement {
