@@ -11,13 +11,6 @@ function TabbedComponents(props: TabbedComponentsProps): ReactElement {
   const [activeTab, setActiveTab] = useState(0);
   const { customClassName = 'TabbedComponents'} = props;
 
-  useEffect(() => {
-    if (props.tabNames.length !== Children.toArray(props.children).length) {
-      setError(true);
-      setErrorMessage('The length of the tabNames array needs to match the number of children.');
-    }
-  },[]);
-
   return (
     <div className={customClassName}>
       <div className={`${customClassName}__tabs`}>
