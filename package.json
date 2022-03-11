@@ -24,7 +24,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.3",
     "jest": "^27.5.1",
-    "nyc": "^15.1.0",
     "prettier": "^2.5.1",
     "rollup": "^2.70.0",
     "rollup-plugin-dts": "^4.2.0",
@@ -59,7 +58,6 @@
     "rollup": "rollup -c",
     "setup": "npm install",
     "test": "jest",
-    "test:cover": "npm run test && nyc report --reporter=json > coverage/coverage.json",
     "test:lint": "npm run lint:fix && npm run test"
   },
   "types": "dist/index.d.ts",
