@@ -37,6 +37,10 @@
   "files": [
     "dist"
   ],
+  "jest": {
+    "collectCoverage": true,
+    "testEnvironment": "jsdom"
+  },
   "keywords": [
     "react",
     "tabs"
