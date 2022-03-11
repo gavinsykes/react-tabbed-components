@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 17
+npm:
+ - 8
+
+before_script:
+  - npm run setup
+  - npm run build
+
+script:
+  - npm run test:cover
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
