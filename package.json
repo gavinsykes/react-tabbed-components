@@ -40,6 +40,8 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
+      "./src/*.{js,jsx,ts,tsx}",
+      "!**/*.test.{js,jsx,ts,tsx}",
       "!**/index.ts"
     ],
     "json": true,
