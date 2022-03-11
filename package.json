@@ -58,6 +58,7 @@
     "rollup": "rollup -c",
     "setup": "npm install",
     "test": "jest",
+    "test: cover": "npm run test && nyc report --reporter=json > coverage/coverage.json",
     "test:lint": "npm run lint:fix && npm run test"
   },
   "types": "dist/index.d.ts",
