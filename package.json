@@ -39,6 +39,11 @@
   ],
   "jest": {
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "!**/index.ts"
+    ],
+    "json": true,
+    "outputFile": "./coverage/coverage.json",
     "testEnvironment": "jsdom"
   },
   "keywords": [
