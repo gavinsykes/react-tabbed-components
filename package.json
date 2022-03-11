@@ -44,8 +44,8 @@
       "!**/*.test.{js,jsx,ts,tsx}",
       "!**/index.ts"
     ],
+    "coverageDirectory": "./coverage",
     "json": true,
-    "outputFile": "./coverage/coverage.json",
     "testEnvironment": "jsdom"
   },
   "keywords": [
