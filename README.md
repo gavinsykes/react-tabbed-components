@@ -24,7 +24,10 @@ interface TabbedComponentsProps {
 ```typescript
 import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
 
-<TabbedComponents customClassName='This defaults to TabbedComponents' tabNames='This represents the labels on each tab'>
+<TabbedComponents
+  customClassName='This defaults to TabbedComponents'
+  tabNames='This represents the labels on each tab'
+>
   <Children /> // The number of children **must** match the length of the tabNames array
 </TabbedComponents>
 
@@ -79,11 +82,27 @@ function TabbedGists(props: TabbedGistsComponentProps): ReactElement {
         error = true;
         errorMessage = 'No Gists found';
       }
-      const filteredGists = response.filter(gist => {
-        return Object.keys(gist.files)[0].startsWith(`euler_problem_${props.eulerProblemNumber}.`);
-      });
+      const filteredGists =
+        response.filter(
+          gist =>
+            Object.keys(gist.files)[0]
+              .startsWith(`euler_problem_${props.eulerProblemNumber}.`)
+        );
+
       setFilteredGistInfo(
-        filteredGists.sort((a,b) => Object.values(a.files)[0].language > Object.values(b.files)[0].language ? 1 : -1).map(gist => ({language: Object.values(gist.files)[0].language,linkText: `${gist.owner.login}/${gist.id}`}))
+        filteredGists
+          .sort(
+            (a,b) => 
+              Object.values(a.files)[0].language > Object.values(b.files)[0].language
+              ? 1
+              : -1
+          )
+          .map(gist => (
+            {
+              language: Object.values(gist.files)[0].language,
+              linkText: `${gist.owner.login}/${gist.id}`
+            }
+          ))
       );
       if (filteredGists.length == 0) {
         error = true;
@@ -101,9 +120,19 @@ function TabbedGists(props: TabbedGistsComponentProps): ReactElement {
     getGists();
   }, [props.eulerProblemNumber]);
 
-  return loading ? <p>TabbedGists component loading...</p> : error ? <p>{errorMessage}</p> : <TabbedComponents customClassName='TabbedGists' tabNames={filteredGistInfo.map(gist => gist.language)}>
-    {filteredGistInfo.map((gist, index) => <Gist id={gist.linkText} key={index}/>)}
-  </TabbedComponents>;
+  return loading
+          ? <p>TabbedGists component loading...</p>
+          : error
+            ? <p>{errorMessage}</p>
+            : <TabbedComponents
+                customClassName='TabbedGists'
+                tabNames={filteredGistInfo.map(gist => gist.language)}
+              >
+                {
+                  filteredGistInfo
+                    .map((gist, index) => <Gist id={gist.linkText} key={index}/>)
+                }
+              </TabbedComponents>;
 }
 
 export default TabbedGists;
