@@ -11,10 +11,20 @@
 
 `npm install --registry https://npm.pkg.github.com`
 
-### Usage
+### Usage and Interface
 
 ```typescript
-<TabbedComponents customClassName='This defaults to TabbedComponents' tabNames='This needs to be Array<string> and represents the labels on each tab'>
+interface TabbedComponentsProps {
+  children: ReactElement | Array<ReactElement>;
+  customClassName?: string;
+  tabNames: Array<string>;
+}
+```
+
+```typescript
+import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
+
+<TabbedComponents customClassName='This defaults to TabbedComponents' tabNames='This represents the labels on each tab'>
   <Children /> // The number of children **must** match the length of the tabNames array
 </TabbedComponents>
 
@@ -37,7 +47,7 @@ Here is some more complex usage - in fact this usage was the whole reason I crea
 import { ReactElement, useEffect, useState } from 'react';
 import Gist from 'react-gist';
 import getGistsByUsername from './getGists';
-import {TabbedComponents} from '@gavinsykes/react-tabbed-components';
+import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
 
 interface GistInfo {
   language: string;
