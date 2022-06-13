@@ -9,7 +9,7 @@
 
 ### Installation
 
-`npm install --registry https://npm.pkg.github.com`
+`npm install --registry https://npm.pkg.github.com @gavinsykes/react-tabbed-components`
 
 ### Usage and Interface
 
