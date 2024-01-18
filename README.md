@@ -5,7 +5,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/gavinsykes/react-tabbed-components)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gavinsykes/react-tabbed-components)
 
-## Display your React components as tabbed windows
+## Display your React components as tabs
 
 ### Installation
 

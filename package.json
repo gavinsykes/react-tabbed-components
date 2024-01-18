@@ -4,7 +4,7 @@
     "email": "gavin@gavinsykes.uk",
     "url": "https://gavinsykes.uk"
   },
-  "description": "A React component to allow tabbing of other components as if they are windows.",
+  "description": "A React component to allow tabbing of other components.",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
@@ -16,6 +16,7 @@
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.48",
+    "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "babel-jest": "^29.7.0",
@@ -55,8 +56,8 @@
   "scripts": {
     "build": "npm run rollup",
     "ci": "npm run build && npm run test:cover",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint": "eslint 'src/components/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint 'src/components/**/*.{js,jsx,ts,tsx}' --fix",
     "postversion": "git push origin production && git push origin production --tags && npm publish",
     "preversion": "npm run build && npm run test:lint",
     "rollup": "rollup -c",

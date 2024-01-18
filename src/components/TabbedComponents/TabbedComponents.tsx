@@ -1,5 +1,5 @@
-import React, { Dispatch, HTMLProps, MouseEvent, MouseEventHandler, ReactElement, ReactNode, SetStateAction, createContext, useContext, useState } from 'react';
-import TabbedComponentsTab from '../TabbedComponentsTab/';
+import React, { HTMLProps, MouseEvent, MouseEventHandler, ReactElement, ReactNode, createContext, useContext, useState } from 'react';
+import TabbedComponentsTab from '../TabbedComponentsTab/TabbedComponentsTab';
 import TabbedComponentsTabs from '../TabbedComponentsTabs/TabbedComponentsTabs';
 import TabbedComponentsDisplay from '../TabbedComponentsDisplay/TabbedComponentsDisplay';
 
@@ -30,7 +30,7 @@ interface TabbedComponentsProps extends HTMLProps<HTMLDivElement> {
   defaultActiveTabIndex?: number;
 }
 
-function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement {
+export default function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement {
   const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex);
   const onClick = (index: number) => (e: MouseEvent<HTMLLIElement>) => {
     setActiveTabIndex(index);
