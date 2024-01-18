@@ -1,27 +1,50 @@
-import React, { Children, ReactElement, useState } from 'react';
+import React, { Dispatch, HTMLProps, MouseEvent, MouseEventHandler, ReactElement, ReactNode, SetStateAction, createContext, useContext, useState } from 'react';
 import TabbedComponentsTab from '../TabbedComponentsTab/';
+import TabbedComponentsTabs from '../TabbedComponentsTabs/TabbedComponentsTabs';
+import TabbedComponentsDisplay from '../TabbedComponentsDisplay/TabbedComponentsDisplay';
 
-export interface TabbedComponentsProps {
-  children: ReactElement | Array<ReactElement>;
-  customClassName?: string;
-  tabNames: Array<string>;
+interface TabbedComponentsContextProps {
+  activeTabIndex: number;
+  onClick: (index: number) => MouseEventHandler<HTMLLIElement>;
 }
 
-function TabbedComponents(props: TabbedComponentsProps): ReactElement {
-  const [activeTab, setActiveTab] = useState(0);
-  const { customClassName = 'TabbedComponents'} = props;
+function createTabbedComponentsContext() {
+  return createContext<TabbedComponentsContextProps>(null!);
+}
 
+const TabbedComponentsContext = createTabbedComponentsContext();
+
+export function useTabbedComponentsContext() {
+  const context = useContext(TabbedComponentsContext);
+  if (!context) {
+    throw new Error(
+      'TabbedComponents.* components must be rendered as child of TabbedComponents'
+    );
+  }
+  return context;
+}
+
+interface TabbedComponentsProps extends HTMLProps<HTMLDivElement> {
+  children: ReactNode;
+  onChangeTab?: MouseEventHandler<HTMLLIElement>;
+  defaultActiveTabIndex?: number;
+}
+
+function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement {
+  const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex);
+  const onClick = (index: number) => (e: MouseEvent<HTMLLIElement>) => {
+    setActiveTabIndex(index);
+    if (onChangeTab) onChangeTab(e);
+  }
   return (
-    <div className={customClassName}>
-      <div className={`${customClassName}__tabs`}>
-        {props.tabNames.map((tabName, index) => (
-          <TabbedComponentsTab customClassName={`${customClassName}__tab`} key={index} activeTab={index === activeTab} setActiveTab={setActiveTab} index={index} tabName={tabName}/>))}
+    <TabbedComponentsContext.Provider value={{ activeTabIndex, onClick }}>
+      <div {...divProps}>
+        {children}
       </div>
-      <div className={`${customClassName}__component`}>
-        {Children.toArray(props.children)[activeTab]}
-      </div>
-    </div>
+    </TabbedComponentsContext.Provider>
   );
 }
 
-export default TabbedComponents;
+TabbedComponents.TabsList = TabbedComponentsTabs;
+TabbedComponents.Tab = TabbedComponentsTab;
+TabbedComponents.Display = TabbedComponentsDisplay;

@@ -1,15 +1,16 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react';
+import React, { HTMLProps, MouseEvent, MouseEventHandler, ReactElement, ReactNode } from 'react';
+import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 
-export interface TabbedComponentsTabProps {
-  activeTab: boolean;
-  customClassName: string;
+export interface TabbedComponentsTabProps extends HTMLProps<HTMLLIElement> {
+  children: ReactNode;
   index: number;
-  setActiveTab: Dispatch<SetStateAction<number>>;
-  tabName: string;
 }
 
-function TabbedComponentsTab(props: TabbedComponentsTabProps): ReactElement {
-  return <button className={`${props.customClassName}__tab${props.activeTab ? ' active' : ''}`} onClick={() => props.setActiveTab(props.index)}>{props.tabName}</button>;
+export default function TabbedComponentsTab({ children, index, ...liProps }: TabbedComponentsTabProps): ReactElement {
+  const { onClick } = useTabbedComponentsContext();
+  return (
+    <li {...liProps} onClick={() => onClick(index)}>
+      {children}
+    </li>
+  )
 }
-
-export default TabbedComponentsTab;
