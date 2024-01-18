@@ -48,7 +48,7 @@
     "registry": "https://npm.pkg.github.com/gavinsykes"
   },
   "scripts": {
-    "build": "npm run rollup -c rollup.config.js",
+    "build": "parcel build src/index.ts",
     "ci": "npm run build && npm run test:cover",
     "lint": "eslint ./src/components/**/*.{js,jsx,ts,tsx}",
     "lint:fix": "eslint ./src/components/**/*.{js,jsx,ts,tsx} --fix",
