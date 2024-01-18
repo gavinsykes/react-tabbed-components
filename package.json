@@ -56,8 +56,8 @@
   "scripts": {
     "build": "npm run rollup",
     "ci": "npm run build && npm run test:cover",
-    "lint": "eslint 'src/components/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint 'src/components/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint": "eslint ./src/components/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint ./src/components/**/*.{js,jsx,ts,tsx} --fix",
     "postversion": "git push origin production && git push origin production --tags && npm publish",
     "preversion": "npm run build && npm run test:lint",
     "rollup": "rollup -c",
