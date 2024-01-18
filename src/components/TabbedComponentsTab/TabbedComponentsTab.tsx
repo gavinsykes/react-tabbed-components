@@ -1,4 +1,4 @@
-import React, { HTMLProps, MouseEvent, MouseEventHandler, ReactElement, ReactNode } from 'react';
+import { HTMLProps, ReactElement, ReactNode } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 
 export interface TabbedComponentsTabProps extends HTMLProps<HTMLLIElement> {
@@ -12,5 +12,5 @@ export default function TabbedComponentsTab({ children, index, ...liProps }: Tab
     <li {...liProps} onClick={() => onClick(index)}>
       {children}
     </li>
-  )
+  );
 }

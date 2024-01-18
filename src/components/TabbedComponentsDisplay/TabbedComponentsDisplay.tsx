@@ -1,4 +1,4 @@
-import React, { Children, HTMLProps } from 'react';
+import { Children, HTMLProps } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 
 interface TabbedComponentsDisplayProps extends HTMLProps<HTMLDivElement> {}

@@ -1,4 +1,4 @@
-import React, { Children, HTMLProps, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
+import { Children, HTMLProps, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 
 interface TabbedComponentsTabsProps extends HTMLProps<HTMLUListElement> {}
@@ -12,7 +12,7 @@ export default function TabbedComponentsTabs({ children, ...uListProps }: Tabbed
     if (!isReactElement(child)) {
       throw new Error();
     }
-  })
+  });
   const childrenWithActiveAttribute = Children.map(children, (child,index) => cloneElement(child as ReactElement, {
     'data-active': index === activeTabIndex
   }));
