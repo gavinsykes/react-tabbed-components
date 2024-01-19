@@ -1,10 +1,11 @@
-import { Children, HTMLProps, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
+import { Children, HTMLProps, ReactElement, ReactNode, isValidElement } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
+import { TabbedComponentsFunctionProvider } from '../TabbedComponentsTab/TabbedComponentsTab';
 
 interface TabbedComponentsTabsProps extends HTMLProps<HTMLUListElement> {}
 
 export default function TabbedComponentsTabs({ children, ...uListProps }: TabbedComponentsTabsProps) {
-  const { activeTabIndex } = useTabbedComponentsContext();
+  const { activeTabIndex, onClick } = useTabbedComponentsContext();
   const isReactElement = (child: ReactNode): child is ReactElement => {
     return isValidElement(child);
   };
@@ -13,12 +14,12 @@ export default function TabbedComponentsTabs({ children, ...uListProps }: Tabbed
       throw new Error();
     }
   });
-  const childrenWithActiveAttribute = Children.map(children, (child,index) => cloneElement(child as ReactElement, {
-    'data-active': index === activeTabIndex
-  }));
   return (
     <ul {...uListProps}>
-      {childrenWithActiveAttribute}
+      {Children.toArray(children).map((child,index) => 
+        <TabbedComponentsFunctionProvider active={index === activeTabIndex} key={index} onClick={onClick(index)}>
+          {child}
+        </TabbedComponentsFunctionProvider>)}
     </ul>
   );
 }
