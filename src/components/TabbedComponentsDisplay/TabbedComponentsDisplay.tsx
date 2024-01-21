@@ -1,13 +1,16 @@
-import { Children, HTMLProps } from 'react';
+import { Children, HTMLProps, useEffect } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 
 interface TabbedComponentsDisplayProps extends HTMLProps<HTMLDivElement> {}
 
-export default function TabbedComponentsDisplay({ ...divProps }: TabbedComponentsDisplayProps) {
-  const { activeTabIndex } = useTabbedComponentsContext();
+export default function TabbedComponentsDisplay({ children, ...divProps }: TabbedComponentsDisplayProps) {
+  const { activeTabIndex, reportDisplayLength } = useTabbedComponentsContext();
+  useEffect(() => {
+    reportDisplayLength(Children.toArray(children).length);
+  },[]);
   return (
     <div {...divProps}>
-      {Children.toArray(divProps.children)[activeTabIndex]}
+      {Children.toArray(children)[activeTabIndex]}
     </div>
   );
 }

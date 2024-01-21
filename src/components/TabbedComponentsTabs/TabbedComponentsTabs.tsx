@@ -1,18 +1,13 @@
-import { Children, HTMLProps, ReactElement, ReactNode, isValidElement } from 'react';
+import { Children, HTMLProps, useEffect } from 'react';
 import { useTabbedComponentsContext } from '../TabbedComponents/TabbedComponents';
 import { TabbedComponentsFunctionProvider } from '../TabbedComponentsTab/TabbedComponentsTab';
 
 interface TabbedComponentsTabsProps extends HTMLProps<HTMLUListElement> {}
 
 export default function TabbedComponentsTabs({ children, ...uListProps }: TabbedComponentsTabsProps) {
-  const { activeTabIndex, onClick } = useTabbedComponentsContext();
-  const isReactElement = (child: ReactNode): child is ReactElement => {
-    return isValidElement(child);
-  };
-  Children.toArray(children).map(child => {
-    if (!isReactElement(child)) {
-      throw new Error();
-    }
+  const { activeTabIndex, onClick, reportTabsLength } = useTabbedComponentsContext();
+  useEffect(() => {
+    reportTabsLength(Children.toArray(children).length);
   });
   return (
     <ul {...uListProps}>
