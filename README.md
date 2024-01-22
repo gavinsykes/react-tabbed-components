@@ -45,6 +45,8 @@ import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
 </div>
 ```
 
+The `data-active` property will alternate between true and false based on which tab is currently being shown
+
 Here is some more complex usage - in fact this usage was the whole reason I created this component!
 
 ```typescript

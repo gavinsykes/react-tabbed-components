@@ -29,5 +29,6 @@
     "target": "es6",
     "useUnknownInCatchVariables": true
   },
-  "exclude": ["./dist"]
+  "exclude": ["./dist"],
+  "include": ["./src","./setup-jest.ts"]
 }

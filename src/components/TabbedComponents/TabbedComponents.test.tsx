@@ -17,4 +17,23 @@ describe('TabbedComponents', () => {
       );
     }).not.toThrow();
   });
+  test('errors when given a different number of tabs and display children', () => {
+    const originalConsoleError = console.error;
+    console.error = jest.fn();
+    expect(() => {
+      render(
+        <TabbedComponents>
+          <TabbedComponents.TabsList>
+            <TabbedComponents.Tab>Tab 1</TabbedComponents.Tab>
+            <TabbedComponents.Tab>Tab 2</TabbedComponents.Tab>
+            <TabbedComponents.Tab>Tab 3</TabbedComponents.Tab>
+          </TabbedComponents.TabsList>
+          <TabbedComponents.Display>
+            <p>Child 1</p>
+          </TabbedComponents.Display>
+        </TabbedComponents>
+      );
+    }).toThrow('The TabbedComponents component requires an equal number of tabs and display components.');
+    console.error = originalConsoleError;
+  });
 });
