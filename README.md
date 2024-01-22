@@ -37,7 +37,7 @@ import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
 // Result:
 <div>
   <ul>
-    <li>Tab 1</li>
+    <li data-active="true" data-index="0">Tab 1</li>
   </ul>
   <div>
     <...Children>
