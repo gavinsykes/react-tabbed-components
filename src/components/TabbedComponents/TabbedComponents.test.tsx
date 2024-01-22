@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import TabbedComponents from './TabbedComponents';
 
@@ -60,5 +60,32 @@ describe('TabbedComponents', () => {
       );
     }).toThrow('The TabbedComponents component requires an equal number of tabs and display components.');
     console.error = originalConsoleError;
+  });
+  test('successfully switches displays when a tab is clicked', () => {
+    expect(() => {
+      render(
+        <TabbedComponents onChangeTab={e => console.log(e.currentTarget.textContent)}>
+          <TabbedComponents.TabsList>
+            <TabbedComponents.Tab data-testid="tab-1">Tab 1</TabbedComponents.Tab>
+            <TabbedComponents.Tab data-testid="tab-2">Tab 2</TabbedComponents.Tab>
+            <TabbedComponents.Tab data-testid="tab-3">Tab 3</TabbedComponents.Tab>
+          </TabbedComponents.TabsList>
+          <TabbedComponents.Display data-testid="display">
+            <p data-testid="child-1">Child 1</p>
+            <p data-testid="child-2">Child 2</p>
+            <p data-testid="child-3">Child 3</p>
+          </TabbedComponents.Display>
+        </TabbedComponents>
+      );
+    }).not.toThrow();
+    expect(screen.getByTestId('tab-1')).toBeInTheDocument();
+    expect(screen.getByTestId('tab-2')).toBeInTheDocument();
+    expect(screen.getByTestId('tab-3')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('tab-2'));
+    expect(screen.getByTestId('tab-1')).toBeInTheDocument();
+    expect(screen.getByTestId('tab-2')).toBeInTheDocument();
+    expect(screen.getByTestId('tab-3')).toBeInTheDocument();
+    expect(screen.getByTestId('child-2')).toBeInTheDocument();
+    expect(screen.getByTestId('display').children.length).toBe(1);
   });
 });
