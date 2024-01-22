@@ -14,31 +14,32 @@
 ### Usage and Interface
 
 ```typescript
-interface TabbedComponentsProps {
-  children: ReactElement | Array<ReactElement>;
-  customClassName?: string;
-  tabNames: Array<string>;
+interface TabbedComponentsProps extends HTMLProps<HTMLDivElement> {
+  children: ReactNode;
+  onChangeTab?: MouseEventHandler<HTMLLIElement>; // Custom tab change handler, e is exposed for access to the DOM node that is clicked
+  defaultActiveTabIndex?: number; // Defaults to 0, also rolls back to 0 if higher than the length of provided tabs
 }
 ```
 
-```typescript
+```tsx
 import { TabbedComponents } from '@gavinsykes/react-tabbed-components';
 
-<TabbedComponents
-  customClassName='This defaults to TabbedComponents'
-  tabNames='This represents the labels on each tab'
->
-  <Children /> // The number of children **must** match the length of the tabNames array
+<TabbedComponents>
+  <TabbedComponents.TabsList>
+    <TabbedComponents.Tab>Tab 1</TabbedComponents.Tab>
+  </TabbedComponents.TabsList>
+  <TabbedComponents.Display>
+    <Children />
+    {/*  The number of children **must** match the number of tabs provided above */}
+  </TabbedComponents.Display>
 </TabbedComponents>
 
 // Result:
-<div class="customClassName">
-  <div class="customClassName__tabs">
-    <button class="customClassName__tab">tabNames[0]</button>
-    <button class="customClassName__tab">tabNames[1]</button>
-    // ... And so on and so forth
-  </div>
-  <div class="customClassName__components">
+<div>
+  <ul>
+    <li>Tab 1</li>
+  </ul>
+  <div>
     <...Children>
   </div>
 </div>
