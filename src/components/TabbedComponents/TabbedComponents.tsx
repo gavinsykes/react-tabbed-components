@@ -33,9 +33,9 @@ interface TabbedComponentsProps extends HTMLProps<HTMLDivElement> {
 }
 
 export default function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement {
-  const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex);
   const [tabsLength, reportTabsLength] = useState(0);
   const [displayLength, reportDisplayLength] = useState(0);
+  const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex > tabsLength - 1 ? 0 : defaultActiveTabIndex);
   if (tabsLength !== displayLength) {
     throw new Error('The TabbedComponents component requires an equal number of tabs and display components.');
   }
