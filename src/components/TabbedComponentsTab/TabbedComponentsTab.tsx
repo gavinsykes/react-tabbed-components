@@ -2,20 +2,19 @@ import { HTMLProps, MouseEventHandler, ReactElement, ReactNode, createContext, u
 
 interface TabbedComponentsFunctionContextProps {
   active: boolean;
+  index: number;
   onClick: MouseEventHandler<HTMLLIElement>;
 }
 
 const TabbedComponentsFunctionContext = createContext<TabbedComponentsFunctionContextProps>(null!);
 
-interface TabbedComponentsFunctionProviderProps {
-  active: boolean;
+interface TabbedComponentsFunctionProviderProps extends TabbedComponentsFunctionContextProps {
   children: ReactNode;
-  onClick: MouseEventHandler<HTMLLIElement>;
 }
 
-export function TabbedComponentsFunctionProvider({ active, children, onClick }: TabbedComponentsFunctionProviderProps) {
+export function TabbedComponentsFunctionProvider({ active, children, index, onClick }: TabbedComponentsFunctionProviderProps) {
   return (
-    <TabbedComponentsFunctionContext.Provider value={{ active, onClick }}>
+    <TabbedComponentsFunctionContext.Provider value={{ active, index, onClick }}>
       {children}
     </TabbedComponentsFunctionContext.Provider>
   );
@@ -30,9 +29,9 @@ interface TabbedComponentsTabProps extends HTMLProps<HTMLLIElement> {
 }
 
 export default function TabbedComponentsTab({ children, ...liProps }: TabbedComponentsTabProps): ReactElement {
-  const { active, onClick } = useTabbedFunctionContext();
+  const { active, index, onClick } = useTabbedFunctionContext();
   return (
-    <li data-active={active} {...liProps} onClick={onClick}>
+    <li data-active={active} data-index={index} {...liProps} onClick={onClick}>
       {children}
     </li>
   );

@@ -12,7 +12,7 @@ export default function TabbedComponentsTabs({ children, ...uListProps }: Tabbed
   return (
     <ul {...uListProps}>
       {Children.toArray(children).map((child,index) => 
-        <TabbedComponentsFunctionProvider active={index === activeTabIndex} key={index} onClick={onClick(index)}>
+        <TabbedComponentsFunctionProvider active={index === activeTabIndex} index={index} key={index} onClick={onClick(index)}>
           {child}
         </TabbedComponentsFunctionProvider>)}
     </ul>
