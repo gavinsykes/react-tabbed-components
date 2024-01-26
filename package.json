@@ -30,7 +30,8 @@
     "typescript": "^5"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "files": [
     "dist"
@@ -60,16 +61,15 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "name": "@gavinsykes/react-tabbed-components",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/gavinsykes"
-  },
   "scripts": {
     "build": "parcel build src/index.ts",
     "ci": "npm run build && npm run test:cover",
     "lint": "eslint ./src/components/**/*.{js,jsx,ts,tsx}",
     "lint:fix": "eslint ./src/components/**/*.{js,jsx,ts,tsx} --fix",
-    "postversion": "git push origin production && git push origin production --tags && npm publish",
+    "postversion": "git push origin production && git push origin production --tags && npm run publish:github & npm run publish:npm",
     "preversion": "npm run build && npm run test",
+    "publish:npm": "npm publish --registry=registry.npmjs.org",
+    "publish:github": "npm publish --registry=npm.pkg.github.com/gavinsykes",
     "rollup": "rollup -c",
     "setup": "npm install",
     "test": "jest --passWithNoTests",
