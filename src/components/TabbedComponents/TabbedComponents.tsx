@@ -26,13 +26,28 @@ export function useTabbedComponentsContext() {
   return context;
 }
 
+/**
+ * TabbedComponentsProps
+ * 
+ * @extends HTMLProps<HTMLDivElement>
+ * @property children ReactNode
+ * @property onChangeTab MouseEventHandler<HTMLLIElement> | undefined
+ * @property defaultActiveTabIndex number | undefined
+ */
 interface TabbedComponentsProps extends HTMLProps<HTMLDivElement> {
   children: ReactNode;
   onChangeTab?: MouseEventHandler<HTMLLIElement>;
   defaultActiveTabIndex?: number;
 }
 
-export default function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement {
+/**
+ * TabbedComponentsTab
+ * 
+ * @param props TabbedComponentsProps
+ * @returns ReactElement<HTMLDivElement>
+ * @throws Error - If the provided numbers of tabs and display components do not match
+ */
+export default function TabbedComponents({ children, defaultActiveTabIndex = 0, onChangeTab, ...divProps }: TabbedComponentsProps): ReactElement<HTMLDivElement> {
   const [tabsLength, reportTabsLength] = useState(0);
   const [displayLength, reportDisplayLength] = useState(0);
   const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex > tabsLength - 1 ? 0 : defaultActiveTabIndex);
