@@ -35,6 +35,7 @@
     "entryPoints": ["src","src/components"],
     "entryPointStrategy": "expand",
     "includeVersion": true,
+    "jsx": "react-jsx",
     "plugin": "typedoc-plugin-missing-exports"
   }
 }
