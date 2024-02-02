@@ -30,12 +30,5 @@
     "useUnknownInCatchVariables": true
   },
   "exclude": ["./dist"],
-  "include": ["./src","./setup-jest.ts"],
-  "typedocOptions": {
-    "entryPoints": ["src","src/components"],
-    "entryPointStrategy": "expand",
-    "includeVersion": true,
-    "jsx": "react-jsx",
-    "plugin": "typedoc-plugin-missing-exports"
-  }
+  "include": ["./src","./setup-jest.ts"]
 }
