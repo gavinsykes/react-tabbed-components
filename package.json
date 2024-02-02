@@ -10,6 +10,8 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@parcel/packager-ts": "^2.11.0",
+    "@parcel/transformer-typescript-types": "^2.11.0",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
@@ -75,6 +77,7 @@
     "test": "jest --passWithNoTests",
     "test:lint": "npm run lint:fix && npm run test"
   },
+  "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "version": "0.4.0"
 }
